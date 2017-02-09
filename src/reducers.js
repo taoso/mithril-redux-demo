@@ -1,22 +1,38 @@
-import { INCR } from './actions.js'
+import { INCR, NEW_TITLE } from './actions.js'
+import { combineReducers } from 'redux'
 
-const initialState = {
-  count: 0,
-  title: {
-    class: 'title',
-    title: 'Hello Mithril',
-  }
+const initTitle = {
+  class: 'title',
+  text: 'Hello Mithril',
 }
 
-export default (state = initialState, action) => {
+const counter = (state = {count:0}, action) => {
   switch (action.type) {
     case INCR:
-      var s = {
+      return {
         ...state,
         count: state.count + 1,
       }
-      return s
+    default:
+      return state
+  }
+}
+
+const title = (state = initTitle, action) => {
+  switch (action.type) {
+    case NEW_TITLE:
+      return {
+        ...state,
+        text: action.text,
+      }
     default:
       return state;
   }
 }
+
+const HelloApp = combineReducers({
+  counter,
+  title,
+})
+
+export default HelloApp
