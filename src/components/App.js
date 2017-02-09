@@ -5,6 +5,7 @@ import store from '../store.js'
 
 const App = {
   view: (vnode) => m('main', [
+    m('p', vnode.attrs.news.text),
     m(Title, vnode.attrs.title),
     m(Form, vnode.attrs.counter),
   ])

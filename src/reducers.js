@@ -1,4 +1,4 @@
-import { INCR, NEW_TITLE } from './actions.js'
+import { INCR, NEW_TITLE, NEW_NEWS } from './actions.js'
 import { combineReducers } from 'redux'
 
 const initTitle = {
@@ -30,9 +30,22 @@ const title = (state = initTitle, action) => {
   }
 }
 
+const news = (state = '', action) => {
+  switch (action.type) {
+    case NEW_NEWS:
+      return {
+        ...state,
+        text: action.title,
+      }
+    default:
+      return state
+  }
+}
+
 const HelloApp = combineReducers({
   counter,
   title,
+  news,
 })
 
 export default HelloApp
